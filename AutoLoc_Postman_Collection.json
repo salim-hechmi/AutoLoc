@@ -1,0 +1,763 @@
+{
+  "info": {
+    "name": "AutoLoc API - CRUD Collection",
+    "description": "Collection complète pour tester les contrôleurs CRUD du projet AutoLoc (Spring Boot)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8083",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Agence",
+      "item": [
+        {
+          "name": "GET - Lister toutes les agences",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/agence",
+              "host": ["{{baseUrl}}"],
+              "path": ["agence"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtenir agence par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/agence/getById/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["agence", "getById", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Ajouter une agence",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nom\": \"AutoLoc Sfax Centre\",\n  \"ville\": \"Sfax\",\n  \"adresse\": \"Route de Teniour Km 2, Sfax\",\n  \"telephone\": \"+216 74 123 456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/agence",
+              "host": ["{{baseUrl}}"],
+              "path": ["agence"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier une agence",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idAgence\": 1,\n  \"nom\": \"AutoLoc Tunis Centre - Renommee\",\n  \"ville\": \"Tunis\",\n  \"adresse\": \"Avenue Habib Bourguiba, Tunis\",\n  \"telephone\": \"+216 71 123 456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/agence",
+              "host": ["{{baseUrl}}"],
+              "path": ["agence"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer une agence",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/agence/delete/3",
+              "host": ["{{baseUrl}}"],
+              "path": ["agence", "delete", "3"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Client",
+      "item": [
+        {
+          "name": "GET - Lister tous les clients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/client",
+              "host": ["{{baseUrl}}"],
+              "path": ["client"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtenir client par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/client/getById/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["client", "getById", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Ajouter un client",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nom\": \"Trabelsi\",\n  \"prenom\": \"Bilel\",\n  \"email\": \"bilel.trabelsi@esprit.tn\",\n  \"telephone\": \"+216 22 555 666\",\n  \"numPermis\": \"TN-445566\",\n  \"dateInscription\": \"2026-10-23\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/client",
+              "host": ["{{baseUrl}}"],
+              "path": ["client"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier un client",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idClient\": 1,\n  \"nom\": \"Ayari\",\n  \"prenom\": \"Youssef\",\n  \"email\": \"youssef.ayari.pro@esprit.tn\",\n  \"telephone\": \"+216 98 111 222\",\n  \"numPermis\": \"TN-0897654\",\n  \"dateInscription\": \"2026-07-08\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/client",
+              "host": ["{{baseUrl}}"],
+              "path": ["client"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer un client",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/client/delete/3",
+              "host": ["{{baseUrl}}"],
+              "path": ["client", "delete", "3"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Contrat",
+      "item": [
+        {
+          "name": "GET - Lister tous les contrats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contrat",
+              "host": ["{{baseUrl}}"],
+              "path": ["contrat"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtenir contrat par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contrat/getById/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["contrat", "getById", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Ajouter un contrat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dateSignature\": \"2026-10-23\",\n  \"montantTotal\": 520.00,\n  \"valide\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contrat",
+              "host": ["{{baseUrl}}"],
+              "path": ["contrat"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier un contrat",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idContrat\": 1,\n  \"dateSignature\": \"2026-10-05\",\n  \"montantTotal\": 900.00,\n  \"valide\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contrat",
+              "host": ["{{baseUrl}}"],
+              "path": ["contrat"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer un contrat",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contrat/delete/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["contrat", "delete", "2"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Employe",
+      "item": [
+        {
+          "name": "GET - Lister tous les employes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employe",
+              "host": ["{{baseUrl}}"],
+              "path": ["employe"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtenir employe par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employe/getById/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["employe", "getById", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Ajouter un employe",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nom\": \"Khmiri\",\n  \"prenom\": \"Omar\",\n  \"role\": \"AGENT\",\n  \"agence\": {\n    \"idAgence\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/employe",
+              "host": ["{{baseUrl}}"],
+              "path": ["employe"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier un employe",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idEmploye\": 1,\n  \"nom\": \"Trabelsi\",\n  \"prenom\": \"Karim\",\n  \"role\": \"CHEF_AGENCE\",\n  \"agence\": {\n    \"idAgence\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/employe",
+              "host": ["{{baseUrl}}"],
+              "path": ["employe"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer un employe",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employe/delete/4",
+              "host": ["{{baseUrl}}"],
+              "path": ["employe", "delete", "4"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Equipement",
+      "item": [
+        {
+          "name": "GET - Lister tous les equipements",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/equipement",
+              "host": ["{{baseUrl}}"],
+              "path": ["equipement"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtenir equipement par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/equipement/getById/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["equipement", "getById", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Ajouter un equipement",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"libelle\": \"Support Smartphone avec chargeur sans fil\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/equipement",
+              "host": ["{{baseUrl}}"],
+              "path": ["equipement"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier un equipement",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idEquipement\": 1,\n  \"libelle\": \"GPS Navigation HD Premium\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/equipement",
+              "host": ["{{baseUrl}}"],
+              "path": ["equipement"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer un equipement",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/equipement/delete/5",
+              "host": ["{{baseUrl}}"],
+              "path": ["equipement", "delete", "5"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Maintenance",
+      "item": [
+        {
+          "name": "GET - Lister toutes les maintenances",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/maintenance",
+              "host": ["{{baseUrl}}"],
+              "path": ["maintenance"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtenir maintenance par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/maintenance/getById/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["maintenance", "getById", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Ajouter une maintenance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dateDebut\": \"2026-10-24\",\n  \"dateFin\": \"2026-10-26\",\n  \"description\": \"Revision periodique et changement filtres\",\n  \"vehicule\": {\n    \"idVehicule\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/maintenance",
+              "host": ["{{baseUrl}}"],
+              "path": ["maintenance"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier une maintenance",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idMaintenance\": 1,\n  \"dateDebut\": \"2026-10-06\",\n  \"dateFin\": \"2026-10-12\",\n  \"description\": \"Vidange complete, plaquettes et disques de freins\",\n  \"vehicule\": {\n    \"idVehicule\": 3\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/maintenance",
+              "host": ["{{baseUrl}}"],
+              "path": ["maintenance"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer une maintenance",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/maintenance/delete/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["maintenance", "delete", "2"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Paiement",
+      "item": [
+        {
+          "name": "GET - Lister tous les paiements",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/paiement",
+              "host": ["{{baseUrl}}"],
+              "path": ["paiement"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtenir paiement par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/paiement/getById/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["paiement", "getById", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Ajouter un paiement",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datePaiement\": \"2026-10-23\",\n  \"montant\": 450.00,\n  \"modePaiement\": \"CARTE_BANCAIRE\",\n  \"contrat\": {\n    \"idContrat\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/paiement",
+              "host": ["{{baseUrl}}"],
+              "path": ["paiement"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier un paiement",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idPaiement\": 1,\n  \"datePaiement\": \"2026-10-05\",\n  \"montant\": 880.00,\n  \"modePaiement\": \"VIREMENT\",\n  \"contrat\": {\n    \"idContrat\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/paiement",
+              "host": ["{{baseUrl}}"],
+              "path": ["paiement"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer un paiement",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/paiement/delete/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["paiement", "delete", "2"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. Reservation",
+      "item": [
+        {
+          "name": "GET - Lister toutes les reservations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reservation",
+              "host": ["{{baseUrl}}"],
+              "path": ["reservation"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtenir reservation par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reservation/getById/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["reservation", "getById", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Ajouter une reservation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dateDebut\": \"2026-11-10\",\n  \"dateFin\": \"2026-11-15\",\n  \"statut\": \"EN_ATTENTE\",\n  \"client\": {\n    \"idClient\": 1\n  },\n  \"vehicule\": {\n    \"idVehicule\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reservation",
+              "host": ["{{baseUrl}}"],
+              "path": ["reservation"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier une reservation",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idReservation\": 1,\n  \"dateDebut\": \"2026-10-05\",\n  \"dateFin\": \"2026-10-10\",\n  \"statut\": \"CONFIRMEE\",\n  \"client\": {\n    \"idClient\": 1\n  },\n  \"vehicule\": {\n    \"idVehicule\": 2\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reservation",
+              "host": ["{{baseUrl}}"],
+              "path": ["reservation"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer une reservation",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reservation/delete/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["reservation", "delete", "2"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "9. Vehicule",
+      "item": [
+        {
+          "name": "GET - Lister tous les vehicules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vehicule",
+              "host": ["{{baseUrl}}"],
+              "path": ["vehicule"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtenir vehicule par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vehicule/getById/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["vehicule", "getById", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Ajouter un vehicule",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"immatriculation\": \"255-TN-7788\",\n  \"marque\": \"Volkswagen\",\n  \"modele\": \"Golf 8\",\n  \"categorie\": \"BERLINE\",\n  \"tarifJournalier\": 160.00,\n  \"statut\": \"DISPONIBLE\",\n  \"agence\": {\n    \"idAgence\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/vehicule",
+              "host": ["{{baseUrl}}"],
+              "path": ["vehicule"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier un vehicule",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idVehicule\": 1,\n  \"immatriculation\": \"230-TN-1024\",\n  \"marque\": \"Renault\",\n  \"modele\": \"Clio 5 Evolution\",\n  \"categorie\": \"CITADINE\",\n  \"tarifJournalier\": 105.00,\n  \"statut\": \"DISPONIBLE\",\n  \"agence\": {\n    \"idAgence\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/vehicule",
+              "host": ["{{baseUrl}}"],
+              "path": ["vehicule"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer un vehicule",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vehicule/delete/4",
+              "host": ["{{baseUrl}}"],
+              "path": ["vehicule", "delete", "4"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
