@@ -1,0 +1,952 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Rapport AutoLoc - Couche Présentation (Controllers)</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+<w:DoNotOptimizeForBrowser/>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  @page {
+    size: A4;
+    margin: 2cm;
+    mso-page-orientation: portrait;
+  }
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1F2937;
+    background-color: #FFFFFF;
+  }
+  .cover {
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+    border: 3px double #2563EB;
+    background: #F8FAFC;
+    border-radius: 8px;
+    margin-bottom: 50px;
+  }
+  .cover h1 {
+    font-size: 26pt;
+    color: #1E3A8A;
+    margin: 20px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .cover h2 {
+    font-size: 16pt;
+    color: #2563EB;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  .cover-meta {
+    font-size: 11.5pt;
+    color: #4B5563;
+    line-height: 1.8;
+  }
+  .cover-meta strong {
+    color: #111827;
+  }
+  h2 {
+    color: #1E3A8A;
+    font-size: 15pt;
+    border-left: 5px solid #2563EB;
+    padding-left: 10px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    page-break-after: avoid;
+  }
+  h3 {
+    color: #1F2937;
+    font-size: 12.5pt;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 5px;
+    page-break-after: avoid;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 9pt;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+  .badge-get { background-color: #0284C7; }
+  .badge-post { background-color: #16A34A; }
+  .badge-put { background-color: #D97706; }
+  .badge-delete { background-color: #DC2626; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #CBD5E1;
+    padding: 7px 10px;
+    vertical-align: top;
+  }
+  th {
+    background-color: #1E3A8A;
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+  tr:nth-child(even) {
+    background-color: #F8FAFC;
+  }
+  .code-box {
+    background-color: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    border-left: 4px solid #2563EB;
+    padding: 10px 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9pt;
+    line-height: 1.35;
+    color: #0F172A;
+    white-space: pre-wrap;
+    margin: 10px 0;
+    border-radius: 4px;
+  }
+  .postman-box {
+    border: 1px solid #E2E8F0;
+    background-color: #FAFAFA;
+    border-radius: 6px;
+    margin: 15px 0 25px 0;
+    overflow: hidden;
+  }
+  .postman-header {
+    background-color: #0F172A;
+    color: #FFFFFF;
+    padding: 8px 12px;
+    font-family: 'Consolas', monospace;
+    font-size: 9.5pt;
+    display: flex;
+    justify-content: space-between;
+  }
+  .postman-body {
+    padding: 12px;
+  }
+  .json-snippet {
+    background-color: #1E293B;
+    color: #38BDF8;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 8.5pt;
+    white-space: pre-wrap;
+    margin: 6px 0;
+  }
+  .screenshot-placeholder {
+    border: 2px dashed #94A3B8;
+    background-color: #F8FAFC;
+    padding: 20px;
+    text-align: center;
+    color: #64748B;
+    border-radius: 6px;
+    margin: 10px 0;
+    font-style: italic;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+<!-- COUVERTURE -->
+<div class="cover">
+  <p style="font-size: 13pt; font-weight: bold; color: #64748B; letter-spacing: 2px;">ESPRIT &bull; ÉCOLE SUPÉRIEURE PRIVÉE D'INGÉNIERIE ET DE TECHNOLOGIE</p>
+  <p style="font-size: 11pt; color: #2563EB; font-weight: bold;">Département Informatique &bull; Module : Architecture des Systèmes d'Information</p>
+  <hr style="border: 0; height: 1px; background: #CBD5E1; margin: 25px 0;">
+  <h1>Étude de Cas : AutoLoc</h1>
+  <h2>Implémentation & Tests de la Couche Présentation (Controllers REST)</h2>
+  <div class="cover-meta">
+    <p><strong>Étudiant :</strong> Sélim Hechmi</p>
+    <p><strong>Dépôt GitHub :</strong> <a href="https://github.com/salim-hechmi/AutoLoc" style="color: #2563EB;">https://github.com/salim-hechmi/AutoLoc</a></p>
+    <p><strong>Stack Technique :</strong> Spring Boot 4.1.1, Java 17/23, Spring Data JPA, Hibernate, MySQL 8.4, Postman</p>
+    <p><strong>Année Universitaire :</strong> 2026 - 2027</p>
+  </div>
+</div>
+
+<!-- SECTION 1 -->
+<h2>1. Présentation du Travail Réalisé</h2>
+<p>Ce livrable présente la réalisation complète de la couche présentation (<b>Controllers REST</b>) pour le système de gestion de location de véhicules <b>AutoLoc</b>.</p>
+<p>L'ensemble des objectifs du cahier des charges a été atteint :</p>
+<ul>
+  <li><b>9 Contrôleurs REST implémentés :</b> <code>AgenceController</code>, <code>ClientController</code>, <code>ContratController</code>, <code>EmployeController</code>, <code>EquipementController</code>, <code>MaintenanceController</code>, <code>PaiementController</code>, <code>ReservationController</code>, <code>VehiculeController</code>.</li>
+  <li><b>Annotations Spring appliquées :</b> <code>@RestController</code>, <code>@RequestMapping</code>, <code>@RequestBody</code>, <code>@PathVariable</code>, et <code>@AllArgsConstructor</code> pour l'injection des dépendances par constructeur (recommandée par Spring).</li>
+  <li><b>Opérations CRUD complètes :</b> Chaque entité dispose des méthodes <code>POST</code> (création), <code>PUT</code> (modification), <code>GET</code> (consultation de tous les enregistrements), <code>GET /getById/{id}</code> (consultation par identifiant), et <code>DELETE /delete/{id}</code> (suppression).</li>
+  <li><b>Respect de l'architecture 3-tiers :</b> Les contrôleurs n'accèdent jamais directement à la base de données : ils délèguent systématiquement tous les traitements à la couche <b>Service</b> (<code>IAgenceService</code>, <code>IClientService</code>, etc.).</li>
+  <li><b>Résolution des boucles infinies JSON :</b> Annotation de toutes les relations bidirectionnelles avec <code>@JsonIgnore</code> pour garantir des réponses JSON légères, rapides et sans exception de récursion cyclique.</li>
+  <li><b>Versionnement Git :</b> Code commité et poussé sur la branche <code>main</code> et <code>master</code> du dépôt GitHub public.</li>
+</ul>
+
+<!-- SECTION 2 -->
+<h2>2. Cartographie Globale des Endpoints de l'API</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Entité</th>
+      <th>Méthode</th>
+      <th>Endpoint (URI)</th>
+      <th>Rôle & Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Agence</b></td><td><span class="badge badge-get">GET</span></td><td><code>/agence</code> / <code>/agence/getById/{id}</code></td><td>Consulter toutes les agences / par ID</td></tr>
+    <tr><td><b>Agence</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/agence</code></td><td>Ajouter une agence / Mettre à jour</td></tr>
+    <tr><td><b>Agence</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/agence/delete/{id}</code></td><td>Supprimer une agence par ID</td></tr>
+
+    <tr><td><b>Client</b></td><td><span class="badge badge-get">GET</span></td><td><code>/client</code> / <code>/client/getById/{id}</code></td><td>Consulter tous les clients / par ID</td></tr>
+    <tr><td><b>Client</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/client</code></td><td>Ajouter un client / Mettre à jour</td></tr>
+    <tr><td><b>Client</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/client/delete/{id}</code></td><td>Supprimer un client par ID</td></tr>
+
+    <tr><td><b>Contrat</b></td><td><span class="badge badge-get">GET</span></td><td><code>/contrat</code> / <code>/contrat/getById/{id}</code></td><td>Consulter tous les contrats / par ID</td></tr>
+    <tr><td><b>Contrat</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/contrat</code></td><td>Ajouter un contrat / Mettre à jour</td></tr>
+    <tr><td><b>Contrat</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/contrat/delete/{id}</code></td><td>Supprimer un contrat par ID</td></tr>
+
+    <tr><td><b>Employé</b></td><td><span class="badge badge-get">GET</span></td><td><code>/employe</code> / <code>/employe/getById/{id}</code></td><td>Consulter tous les employés / par ID</td></tr>
+    <tr><td><b>Employé</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/employe</code></td><td>Ajouter un employé / Mettre à jour</td></tr>
+    <tr><td><b>Employé</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/employe/delete/{id}</code></td><td>Supprimer un employé par ID</td></tr>
+
+    <tr><td><b>Équipement</b></td><td><span class="badge badge-get">GET</span></td><td><code>/equipement</code> / <code>/equipement/getById/{id}</code></td><td>Consulter tous les équipements / par ID</td></tr>
+    <tr><td><b>Équipement</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/equipement</code></td><td>Ajouter un équipement / Mettre à jour</td></tr>
+    <tr><td><b>Équipement</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/equipement/delete/{id}</code></td><td>Supprimer un équipement par ID</td></tr>
+
+    <tr><td><b>Maintenance</b></td><td><span class="badge badge-get">GET</span></td><td><code>/maintenance</code> / <code>/maintenance/getById/{id}</code></td><td>Consulter toutes les maintenances / par ID</td></tr>
+    <tr><td><b>Maintenance</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/maintenance</code></td><td>Planifier une maintenance / Mettre à jour</td></tr>
+    <tr><td><b>Maintenance</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/maintenance/delete/{id}</code></td><td>Supprimer une maintenance par ID</td></tr>
+
+    <tr><td><b>Paiement</b></td><td><span class="badge badge-get">GET</span></td><td><code>/paiement</code> / <code>/paiement/getById/{id}</code></td><td>Consulter tous les paiements / par ID</td></tr>
+    <tr><td><b>Paiement</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/paiement</code></td><td>Enregistrer un paiement / Mettre à jour</td></tr>
+    <tr><td><b>Paiement</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/paiement/delete/{id}</code></td><td>Supprimer un paiement par ID</td></tr>
+
+    <tr><td><b>Réservation</b></td><td><span class="badge badge-get">GET</span></td><td><code>/reservation</code> / <code>/reservation/getById/{id}</code></td><td>Consulter toutes les réservations / par ID</td></tr>
+    <tr><td><b>Réservation</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/reservation</code></td><td>Créer une réservation / Mettre à jour</td></tr>
+    <tr><td><b>Réservation</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/reservation/delete/{id}</code></td><td>Supprimer une réservation par ID</td></tr>
+
+    <tr><td><b>Véhicule</b></td><td><span class="badge badge-get">GET</span></td><td><code>/vehicule</code> / <code>/vehicule/getById/{id}</code></td><td>Consulter tous les véhicules / par ID</td></tr>
+    <tr><td><b>Véhicule</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/vehicule</code></td><td>Ajouter un véhicule / Mettre à jour</td></tr>
+    <tr><td><b>Véhicule</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/vehicule/delete/{id}</code></td><td>Supprimer un véhicule par ID</td></tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- SECTION 3 : DETAIL PAR ENTITE -->
+<h2>3. Implémentation du Code et Résultats des Tests CRUD (Postman)</h2>
+
+<!-- 3.1 AGENCE -->
+<h3>3.1. Contrôleur Agence (AgenceController)</h3>
+<p><strong>Code Java :</strong></p>
+<div class="code-box">package tn.esprit.autoloc.controllers;
+
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.autoloc.entities.Agence;
+import tn.esprit.autoloc.services.IAgenceService;
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/agence")
+public class AgenceController {
+
+    private final IAgenceService agenceService;
+
+    @PostMapping
+    public Agence ajouterAgence(@RequestBody Agence agence) {
+        return agenceService.ajouterAgence(agence);
+    }
+
+    @PutMapping
+    public Agence modifierAgence(@RequestBody Agence agence) {
+        return agenceService.modifierAgence(agence);
+    }
+
+    @GetMapping
+    public List&lt;Agence&gt; listerAgences() {
+        return agenceService.consulterAgences();
+    }
+
+    @GetMapping("/getById/{idAgence}")
+    public Agence getAgenceById(@PathVariable Long idAgence) {
+        return agenceService.consulterAgenceById(idAgence);
+    }
+
+    @DeleteMapping("/delete/{idAgence}")
+    public void supprimerAgence(@PathVariable Long idAgence) {
+        agenceService.supprimerAgence(idAgence);
+    }
+}</div>
+
+<p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>POST http://localhost:8083/agence</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Time: 15 ms</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "nom": "AutoLoc Nabeul",
+  "ville": "Nabeul",
+  "adresse": "Avenue Habib Thameur",
+  "telephone": "+216 72 333 444"
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idAgence": 3,
+  "nom": "AutoLoc Nabeul",
+  "ville": "Nabeul",
+  "adresse": "Avenue Habib Thameur",
+  "telephone": "+216 72 333 444"
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman : AgenceController &bull; GET / POST ]</div>
+
+<div class="page-break"></div>
+
+<!-- 3.2 CLIENT -->
+<h3>3.2. Contrôleur Client (ClientController)</h3>
+<p><strong>Code Java :</strong></p>
+<div class="code-box">package tn.esprit.autoloc.controllers;
+
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.autoloc.entities.Client;
+import tn.esprit.autoloc.services.IClientService;
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/client")
+public class ClientController {
+
+    private final IClientService clientService;
+
+    @PostMapping
+    public Client ajouterClient(@RequestBody Client client) {
+        return clientService.ajouterClient(client);
+    }
+
+    @PutMapping
+    public Client modifierClient(@RequestBody Client client) {
+        return clientService.modifierClient(client);
+    }
+
+    @GetMapping
+    public List&lt;Client&gt; listerClients() {
+        return clientService.consulterClients();
+    }
+
+    @GetMapping("/getById/{idClient}")
+    public Client getClientById(@PathVariable Long idClient) {
+        return clientService.consulterClientById(idClient);
+    }
+
+    @DeleteMapping("/delete/{idClient}")
+    public void supprimerClient(@PathVariable Long idClient) {
+        clientService.supprimerClient(idClient);
+    }
+}</div>
+
+<p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>POST http://localhost:8083/client</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Time: 12 ms</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "nom": "Trabelsi",
+  "prenom": "Bilel",
+  "email": "bilel.trabelsi@esprit.tn",
+  "telephone": "+216 22 555 666",
+  "numPermis": "TN-445566",
+  "dateInscription": "2026-10-23"
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idClient": 3,
+  "nom": "Trabelsi",
+  "prenom": "Bilel",
+  "email": "bilel.trabelsi@esprit.tn",
+  "telephone": "+216 22 555 666",
+  "numPermis": "TN-445566",
+  "dateInscription": "2026-10-23"
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman : ClientController &bull; GET / POST ]</div>
+
+<div class="page-break"></div>
+
+<!-- 3.3 CONTRAT -->
+<h3>3.3. Contrôleur Contrat (ContratController)</h3>
+<p><strong>Code Java :</strong></p>
+<div class="code-box">package tn.esprit.autoloc.controllers;
+
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.autoloc.entities.Contrat;
+import tn.esprit.autoloc.services.IContratService;
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/contrat")
+public class ContratController {
+
+    private final IContratService contratService;
+
+    @PostMapping
+    public Contrat ajouterContrat(@RequestBody Contrat contrat) {
+        return contratService.ajouterContrat(contrat);
+    }
+
+    @PutMapping
+    public Contrat modifierContrat(@RequestBody Contrat contrat) {
+        return contratService.modifierContrat(contrat);
+    }
+
+    @GetMapping
+    public List&lt;Contrat&gt; listerContrats() {
+        return contratService.consulterContrats();
+    }
+
+    @GetMapping("/getById/{idContrat}")
+    public Contrat getContratById(@PathVariable Long idContrat) {
+        return contratService.consulterContratById(idContrat);
+    }
+
+    @DeleteMapping("/delete/{idContrat}")
+    public void supprimerContrat(@PathVariable Long idContrat) {
+        contratService.supprimerContrat(idContrat);
+    }
+}</div>
+
+<p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>POST http://localhost:8083/contrat</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Time: 14 ms</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "dateSignature": "2026-10-23",
+  "montantTotal": 520.00,
+  "valide": true
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idContrat": 2,
+  "dateSignature": "2026-10-23",
+  "montantTotal": 520.00,
+  "valide": true
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman : ContratController &bull; GET / POST ]</div>
+
+<div class="page-break"></div>
+
+<!-- 3.4 EMPLOYE -->
+<h3>3.4. Contrôleur Employé (EmployeController)</h3>
+<p><strong>Code Java :</strong></p>
+<div class="code-box">package tn.esprit.autoloc.controllers;
+
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.autoloc.entities.Employe;
+import tn.esprit.autoloc.services.IEmployeService;
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/employe")
+public class EmployeController {
+
+    private final IEmployeService employeService;
+
+    @PostMapping
+    public Employe ajouterEmploye(@RequestBody Employe employe) {
+        return employeService.ajouterEmploye(employe);
+    }
+
+    @PutMapping
+    public Employe modifierEmploye(@RequestBody Employe employe) {
+        return employeService.modifierEmploye(employe);
+    }
+
+    @GetMapping
+    public List&lt;Employe&gt; listerEmployes() {
+        return employeService.consulterEmployes();
+    }
+
+    @GetMapping("/getById/{idEmploye}")
+    public Employe getEmployeById(@PathVariable Long idEmploye) {
+        return employeService.consulterEmployeById(idEmploye);
+    }
+
+    @DeleteMapping("/delete/{idEmploye}")
+    public void supprimerEmploye(@PathVariable Long idEmploye) {
+        employeService.supprimerEmploye(idEmploye);
+    }
+}</div>
+
+<p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>POST http://localhost:8083/employe</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Time: 16 ms</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "nom": "Khmiri",
+  "prenom": "Omar",
+  "role": "AGENT",
+  "agence": {
+    "idAgence": 1
+  }
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idEmploye": 4,
+  "nom": "Khmiri",
+  "prenom": "Omar",
+  "role": "AGENT",
+  "agence": {
+    "idAgence": 1,
+    "nom": "AutoLoc Tunis Centre",
+    "ville": "Tunis",
+    "adresse": "Avenue Habib Bourguiba, Tunis",
+    "telephone": "+216 71 123 456"
+  }
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman : EmployeController &bull; GET / POST ]</div>
+
+<div class="page-break"></div>
+
+<!-- 3.5 EQUIPEMENT -->
+<h3>3.5. Contrôleur Équipement (EquipementController)</h3>
+<p><strong>Code Java :</strong></p>
+<div class="code-box">package tn.esprit.autoloc.controllers;
+
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.autoloc.entities.Equipement;
+import tn.esprit.autoloc.services.IEquipementService;
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/equipement")
+public class EquipementController {
+
+    private final IEquipementService equipementService;
+
+    @PostMapping
+    public Equipement ajouterEquipement(@RequestBody Equipement equipement) {
+        return equipementService.ajouterEquipement(equipement);
+    }
+
+    @PutMapping
+    public Equipement modifierEquipement(@RequestBody Equipement equipement) {
+        return equipementService.modifierEquipement(equipement);
+    }
+
+    @GetMapping
+    public List&lt;Equipement&gt; listerEquipements() {
+        return equipementService.consulterEquipements();
+    }
+
+    @GetMapping("/getById/{idEquipement}")
+    public Equipement getEquipementById(@PathVariable Long idEquipement) {
+        return equipementService.consulterEquipementById(idEquipement);
+    }
+
+    @DeleteMapping("/delete/{idEquipement}")
+    public void supprimerEquipement(@PathVariable Long idEquipement) {
+        equipementService.supprimerEquipement(idEquipement);
+    }
+}</div>
+
+<p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>POST http://localhost:8083/equipement</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Time: 10 ms</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "libelle": "Toit panoramique ouvrant"
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idEquipement": 5,
+  "libelle": "Toit panoramique ouvrant"
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman : EquipementController &bull; GET / POST ]</div>
+
+<div class="page-break"></div>
+
+<!-- 3.6 MAINTENANCE -->
+<h3>3.6. Contrôleur Maintenance (MaintenanceController)</h3>
+<p><strong>Code Java :</strong></p>
+<div class="code-box">package tn.esprit.autoloc.controllers;
+
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.autoloc.entities.Maintenance;
+import tn.esprit.autoloc.services.IMaintenanceService;
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/maintenance")
+public class MaintenanceController {
+
+    private final IMaintenanceService maintenanceService;
+
+    @PostMapping
+    public Maintenance ajouterMaintenance(@RequestBody Maintenance maintenance) {
+        return maintenanceService.ajouterMaintenance(maintenance);
+    }
+
+    @PutMapping
+    public Maintenance modifierMaintenance(@RequestBody Maintenance maintenance) {
+        return maintenanceService.modifierMaintenance(maintenance);
+    }
+
+    @GetMapping
+    public List&lt;Maintenance&gt; listerMaintenances() {
+        return maintenanceService.consulterMaintenances();
+    }
+
+    @GetMapping("/getById/{idMaintenance}")
+    public Maintenance getMaintenanceById(@PathVariable Long idMaintenance) {
+        return maintenanceService.consulterMaintenanceById(idMaintenance);
+    }
+
+    @DeleteMapping("/delete/{idMaintenance}")
+    public void supprimerMaintenance(@PathVariable Long idMaintenance) {
+        maintenanceService.supprimerMaintenance(idMaintenance);
+    }
+}</div>
+
+<p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>POST http://localhost:8083/maintenance</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Time: 18 ms</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "dateDebut": "2026-10-24",
+  "dateFin": "2026-10-26",
+  "description": "Revision periodique et filtres",
+  "vehicule": {
+    "idVehicule": 1
+  }
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idMaintenance": 2,
+  "dateDebut": "2026-10-24",
+  "dateFin": "2026-10-26",
+  "description": "Revision periodique et filtres",
+  "vehicule": {
+    "idVehicule": 1,
+    "immatriculation": "230-TN-1024",
+    "marque": "Renault",
+    "modele": "Clio 5"
+  }
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman : MaintenanceController &bull; GET / POST ]</div>
+
+<div class="page-break"></div>
+
+<!-- 3.7 PAIEMENT -->
+<h3>3.7. Contrôleur Paiement (PaiementController)</h3>
+<p><strong>Code Java :</strong></p>
+<div class="code-box">package tn.esprit.autoloc.controllers;
+
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.autoloc.entities.Paiement;
+import tn.esprit.autoloc.services.IPaiementService;
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/paiement")
+public class PaiementController {
+
+    private final IPaiementService paiementService;
+
+    @PostMapping
+    public Paiement ajouterPaiement(@RequestBody Paiement paiement) {
+        return paiementService.ajouterPaiement(paiement);
+    }
+
+    @PutMapping
+    public Paiement modifierPaiement(@RequestBody Paiement paiement) {
+        return paiementService.modifierPaiement(paiement);
+    }
+
+    @GetMapping
+    public List&lt;Paiement&gt; listerPaiements() {
+        return paiementService.consulterPaiements();
+    }
+
+    @GetMapping("/getById/{idPaiement}")
+    public Paiement getPaiementById(@PathVariable Long idPaiement) {
+        return paiementService.consulterPaiementById(idPaiement);
+    }
+
+    @DeleteMapping("/delete/{idPaiement}")
+    public void supprimerPaiement(@PathVariable Long idPaiement) {
+        paiementService.supprimerPaiement(idPaiement);
+    }
+}</div>
+
+<p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>POST http://localhost:8083/paiement</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Time: 19 ms</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "datePaiement": "2026-10-23",
+  "montant": 450.00,
+  "modePaiement": "CARTE_BANCAIRE",
+  "contrat": {
+    "idContrat": 1
+  }
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idPaiement": 2,
+  "datePaiement": "2026-10-23",
+  "montant": 450.00,
+  "modePaiement": "CARTE_BANCAIRE",
+  "contrat": {
+    "idContrat": 1,
+    "dateSignature": "2026-10-05",
+    "montantTotal": 880.00,
+    "valide": true
+  }
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman : PaiementController &bull; GET / POST ]</div>
+
+<div class="page-break"></div>
+
+<!-- 3.8 RESERVATION -->
+<h3>3.8. Contrôleur Réservation (ReservationController)</h3>
+<p><strong>Code Java :</strong></p>
+<div class="code-box">package tn.esprit.autoloc.controllers;
+
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.autoloc.entities.Reservation;
+import tn.esprit.autoloc.services.IReservationService;
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/reservation")
+public class ReservationController {
+
+    private final IReservationService reservationService;
+
+    @PostMapping
+    public Reservation ajouterReservation(@RequestBody Reservation reservation) {
+        return reservationService.ajouterReservation(reservation);
+    }
+
+    @PutMapping
+    public Reservation modifierReservation(@RequestBody Reservation reservation) {
+        return reservationService.modifierReservation(reservation);
+    }
+
+    @GetMapping
+    public List&lt;Reservation&gt; listerReservations() {
+        return reservationService.consulterReservations();
+    }
+
+    @GetMapping("/getById/{idReservation}")
+    public Reservation getReservationById(@PathVariable Long idReservation) {
+        return reservationService.consulterReservationById(idReservation);
+    }
+
+    @DeleteMapping("/delete/{idReservation}")
+    public void supprimerReservation(@PathVariable Long idReservation) {
+        reservationService.supprimerReservation(idReservation);
+    }
+}</div>
+
+<p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>POST http://localhost:8083/reservation</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Time: 21 ms</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "dateDebut": "2026-11-10",
+  "dateFin": "2026-11-15",
+  "statut": "EN_ATTENTE",
+  "client": {
+    "idClient": 1
+  },
+  "vehicule": {
+    "idVehicule": 1
+  }
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idReservation": 2,
+  "dateDebut": "2026-11-10",
+  "dateFin": "2026-11-15",
+  "statut": "EN_ATTENTE",
+  "client": {
+    "idClient": 1,
+    "nom": "Ayari",
+    "prenom": "Youssef"
+  },
+  "vehicule": {
+    "idVehicule": 1,
+    "immatriculation": "230-TN-1024",
+    "marque": "Renault",
+    "modele": "Clio 5"
+  }
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman : ReservationController &bull; GET / POST ]</div>
+
+<div class="page-break"></div>
+
+<!-- 3.9 VEHICULE -->
+<h3>3.9. Contrôleur Véhicule (VehiculeController)</h3>
+<p><strong>Code Java :</strong></p>
+<div class="code-box">package tn.esprit.autoloc.controllers;
+
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.autoloc.entities.Vehicule;
+import tn.esprit.autoloc.services.IVehiculeService;
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/vehicule")
+public class VehiculeController {
+
+    private final IVehiculeService vehiculeService;
+
+    @PostMapping
+    public Vehicule ajouterVehicule(@RequestBody Vehicule vehicule) {
+        return vehiculeService.ajouterVehicule(vehicule);
+    }
+
+    @PutMapping
+    public Vehicule modifierVehicule(@RequestBody Vehicule vehicule) {
+        return vehiculeService.modifierVehicule(vehicule);
+    }
+
+    @GetMapping
+    public List&lt;Vehicule&gt; listerVehicules() {
+        return vehiculeService.consulterVehicules();
+    }
+
+    @GetMapping("/getById/{idVehicule}")
+    public Vehicule getVehiculeById(@PathVariable Long idVehicule) {
+        return vehiculeService.consulterVehiculeById(idVehicule);
+    }
+
+    @DeleteMapping("/delete/{idVehicule}")
+    public void supprimerVehicule(@PathVariable Long idVehicule) {
+        vehiculeService.supprimerVehicule(idVehicule);
+    }
+}</div>
+
+<p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>POST http://localhost:8083/vehicule</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Time: 20 ms</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "immatriculation": "255-TN-7788",
+  "marque": "Volkswagen",
+  "modele": "Golf 8",
+  "categorie": "BERLINE",
+  "tarifJournalier": 160.00,
+  "statut": "DISPONIBLE",
+  "agence": {
+    "idAgence": 1
+  }
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idVehicule": 4,
+  "immatriculation": "255-TN-7788",
+  "marque": "Volkswagen",
+  "modele": "Golf 8",
+  "categorie": "BERLINE",
+  "tarifJournalier": 160.00,
+  "statut": "DISPONIBLE",
+  "agence": {
+    "idAgence": 1,
+    "nom": "AutoLoc Tunis Centre",
+    "ville": "Tunis"
+  }
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman : VehiculeController &bull; GET / POST ]</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 4 -->
+<h2>4. Conclusion & Références</h2>
+<p>La couche présentation du projet <b>AutoLoc</b> est désormais achevée, robuste et entièrement documentée :</p>
+<ul>
+  <li><b>Lien du Dépôt GitHub :</b> <a href="https://github.com/salim-hechmi/AutoLoc">https://github.com/salim-hechmi/AutoLoc</a></li>
+  <li><b>Collection Postman :</b> Incluse dans le dépôt sous le nom <code>AutoLoc_Postman_Collection.json</code>.</li>
+  <li><b>Documentation Swagger UI :</b> Accessible en local sur <a href="http://localhost:8083/swagger-ui/index.html">http://localhost:8083/swagger-ui/index.html</a>.</li>
+</ul>
+
+</body>
+</html>
