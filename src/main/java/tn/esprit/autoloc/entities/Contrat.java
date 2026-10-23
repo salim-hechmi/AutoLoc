@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,11 +26,13 @@ public class Contrat {
 
     private BigDecimal montantTotal;
 
-    private boolean valide;
+    private Boolean valide;
 
     @OneToOne(mappedBy = "contrat")
+    @JsonIgnore
     private Reservation reservation;
 
     @OneToMany(mappedBy = "contrat")
+    @JsonIgnore
     private List<Paiement> paiements;
 }

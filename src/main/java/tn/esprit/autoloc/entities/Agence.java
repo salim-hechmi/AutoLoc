@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class Agence {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idAgence;
+    private Long idAgence;
 
     private String nom;
     private String ville;
@@ -25,8 +26,10 @@ public class Agence {
     private String telephone;
 
     @OneToMany(mappedBy = "agence")
+    @JsonIgnore
     private List<Employe> employes;
 
     @OneToMany(mappedBy = "agence")
+    @JsonIgnore
     private List<Vehicule> vehicules;
 }
