@@ -92,6 +92,27 @@
               "path": ["agence", "delete", "3"]
             }
           }
+        },
+        {
+          "name": "POST - Scenario 2: Ajouter agence avec deux vehicules",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nom\": \"AutoLoc Sousse Ville\",\n  \"ville\": \"Sousse\",\n  \"adresse\": \"Boulevard 14 Janvier, Sousse\",\n  \"telephone\": \"+216 73 111 222\",\n  \"vehicules\": [\n    {\n      \"immatriculation\": \"260-TN-1122\",\n      \"marque\": \"Peugeot\",\n      \"modele\": \"208\",\n      \"categorie\": \"CITADINE\",\n      \"tarifJournalier\": 90.00,\n      \"statut\": \"DISPONIBLE\"\n    },\n    {\n      \"immatriculation\": \"261-TN-3344\",\n      \"marque\": \"Nissan\",\n      \"modele\": \"Qashqai\",\n      \"categorie\": \"SUV\",\n      \"tarifJournalier\": 200.00,\n      \"statut\": \"DISPONIBLE\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/agence/ajouter-avec-vehicules",
+              "host": ["{{baseUrl}}"],
+              "path": ["agence", "ajouter-avec-vehicules"]
+            }
+          }
         }
       ]
     },
@@ -778,6 +799,30 @@
               "raw": "{{baseUrl}}/vehicule/delete/4",
               "host": ["{{baseUrl}}"],
               "path": ["vehicule", "delete", "4"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Scenario 3: Affecter equipement (Siege Bebe) a vehicule",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vehicule/affecter-equipement/1/3",
+              "host": ["{{baseUrl}}"],
+              "path": ["vehicule", "affecter-equipement", "1", "3"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Scenario 3: Desaffecter equipement (Siege Bebe) du vehicule",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vehicule/desaffecter-equipement/1/3",
+              "host": ["{{baseUrl}}"],
+              "path": ["vehicule", "desaffecter-equipement", "1", "3"]
             }
           }
         }

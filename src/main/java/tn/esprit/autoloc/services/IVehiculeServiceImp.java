@@ -2,9 +2,13 @@ package tn.esprit.autoloc.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import tn.esprit.autoloc.entities.Equipement;
 import tn.esprit.autoloc.entities.Vehicule;
+import tn.esprit.autoloc.repositories.EquipementRepository;
 import tn.esprit.autoloc.repositories.VehiculeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -12,6 +16,7 @@ import java.util.List;
 public class IVehiculeServiceImp implements IVehiculeService {
 
     private final VehiculeRepository vehiculeRepository;
+    private final EquipementRepository equipementRepository;
 
     @Override
     public Vehicule ajouterVehicule(Vehicule vehicule) {
@@ -36,5 +41,40 @@ public class IVehiculeServiceImp implements IVehiculeService {
     @Override
     public void supprimerVehicule(long idVehicule) {
         vehiculeRepository.deleteById(idVehicule);
+    }
+
+    @Override
+    @Transactional
+    public Vehicule affecterEquipement(Long idVehicule, Long idEquipement) {
+        Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElse(null);
+        Equipement equipement = equipementRepository.findById(idEquipement).orElse(null);
+
+        if (vehicule != null && equipement != null) {
+            if (vehicule.getEquipements() == null) {
+                vehicule.setEquipements(new ArrayList<>());
+            }
+            boolean exists = vehicule.getEquipements().stream()
+                    .anyMatch(e -> e.getIdEquipement().equals(idEquipement));
+            if (!exists) {
+                vehicule.getEquipements().add(equipement);
+            }
+            return vehiculeRepository.save(vehicule);
+        }
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement) {
+        Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElse(null);
+        Equipement equipement = equipementRepository.findById(idEquipement).orElse(null);
+
+        if (vehicule != null && equipement != null) {
+            if (vehicule.getEquipements() != null) {
+                vehicule.getEquipements().removeIf(e -> e.getIdEquipement().equals(idEquipement));
+            }
+            return vehiculeRepository.save(vehicule);
+        }
+        return null;
     }
 }

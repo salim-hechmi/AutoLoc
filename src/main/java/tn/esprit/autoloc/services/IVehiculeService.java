@@ -14,4 +14,8 @@ public interface IVehiculeService {
     Vehicule consulterVehiculeById(long idVehicule);
 
     void supprimerVehicule(long idVehicule);
+
+    Vehicule affecterEquipement(Long idVehicule, Long idEquipement);
+
+    Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement);
 }

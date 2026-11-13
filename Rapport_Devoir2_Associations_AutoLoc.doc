@@ -1,0 +1,507 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Devoir 2 - Gestion des Associations JPA (AutoLoc)</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+<w:DoNotOptimizeForBrowser/>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  @page {
+    size: A4;
+    margin: 2cm;
+    mso-page-orientation: portrait;
+  }
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1F2937;
+    background-color: #FFFFFF;
+  }
+  .cover {
+    text-align: center;
+    padding: 50px 20px 35px 20px;
+    border: 3px double #1E3A8A;
+    background: #F8FAFC;
+    border-radius: 8px;
+    margin-bottom: 40px;
+  }
+  .cover h1 {
+    font-size: 24pt;
+    color: #1E3A8A;
+    margin: 15px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .cover h2 {
+    font-size: 15pt;
+    color: #2563EB;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+  .cover-meta {
+    font-size: 11pt;
+    color: #4B5563;
+    line-height: 1.8;
+  }
+  h2 {
+    color: #1E3A8A;
+    font-size: 14pt;
+    border-left: 5px solid #2563EB;
+    padding-left: 10px;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    page-break-after: avoid;
+  }
+  h3 {
+    color: #1F2937;
+    font-size: 12pt;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 4px;
+    page-break-after: avoid;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 8.5pt;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+  .badge-get { background-color: #0284C7; }
+  .badge-post { background-color: #16A34A; }
+  .badge-put { background-color: #D97706; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #CBD5E1;
+    padding: 7px 10px;
+    vertical-align: top;
+  }
+  th {
+    background-color: #1E3A8A;
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+  tr:nth-child(even) {
+    background-color: #F8FAFC;
+  }
+  .scenario-card {
+    background-color: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-left: 4px solid #2563EB;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 12px 0;
+  }
+  .code-box {
+    background-color: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    border-left: 4px solid #0EA5E9;
+    padding: 10px 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 8.5pt;
+    line-height: 1.35;
+    color: #0F172A;
+    white-space: pre-wrap;
+    margin: 8px 0;
+    border-radius: 4px;
+  }
+  .postman-box {
+    border: 1px solid #E2E8F0;
+    background-color: #FAFAFA;
+    border-radius: 6px;
+    margin: 12px 0 18px 0;
+    overflow: hidden;
+  }
+  .postman-header {
+    background-color: #0F172A;
+    color: #FFFFFF;
+    padding: 7px 12px;
+    font-family: 'Consolas', monospace;
+    font-size: 9pt;
+  }
+  .postman-body {
+    padding: 10px 12px;
+  }
+  .json-snippet {
+    background-color: #1E293B;
+    color: #38BDF8;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 8pt;
+    white-space: pre-wrap;
+    margin: 5px 0;
+  }
+  .screenshot-placeholder {
+    border: 2px dashed #94A3B8;
+    background-color: #F8FAFC;
+    padding: 18px;
+    text-align: center;
+    color: #64748B;
+    border-radius: 6px;
+    margin: 10px 0;
+    font-style: italic;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+<!-- COUVERTURE -->
+<div class="cover">
+  <p style="font-size: 13pt; font-weight: bold; color: #64748B; letter-spacing: 2px;">ESPRIT &bull; ÉCOLE SUPÉRIEURE PRIVÉE D'INGÉNIERIE ET DE TECHNOLOGIE</p>
+  <p style="font-size: 11pt; color: #2563EB; font-weight: bold;">Département Informatique &bull; Module : Architecture des Systèmes d'Information</p>
+  <hr style="border: 0; height: 1px; background: #CBD5E1; margin: 20px 0;">
+  <h1>Étude de Cas : AutoLoc</h1>
+  <h2>Devoir 2 : Implémentation Avancée des Associations JPA (@ManyToOne, @OneToMany, @ManyToMany)</h2>
+  <div class="cover-meta">
+    <p><strong>Étudiant :</strong> Sélim Hechmi</p>
+    <p><strong>Dépôt GitHub du Projet :</strong> <a href="https://github.com/salim-hechmi/AutoLoc" style="color: #2563EB;">https://github.com/salim-hechmi/AutoLoc</a></p>
+    <p><strong>Technologies :</strong> Spring Boot 4.1.1, Spring Data JPA, Hibernate, MySQL 8.4, Postman</p>
+  </div>
+</div>
+
+<!-- INTRODUCTION -->
+<h2>1. Synthèse des Scénarios Demandés</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Type d'Association</th>
+      <th>Scénario Métier</th>
+      <th>Méthode(s) Implémentée(s)</th>
+      <th>Route REST</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>@ManyToOne</b></td>
+      <td><b>1. Mutation Employé (Sfax &rarr; Tunis) :</b> Désaffecter l'employé de son agence actuelle, puis l'affecter à la nouvelle agence.</td>
+      <td>
+        <code>desaffecterEmploye(Long idEmploye)</code><br>
+        <code>affecterEmploye(Long idEmploye, Long idAgence)</code>
+      </td>
+      <td>
+        <span class="badge badge-put">PUT</span> <code>/employe/desaffecter/{id}</code><br>
+        <span class="badge badge-put">PUT</span> <code>/employe/affecter/{idEmp}/{idAg}</code>
+      </td>
+    </tr>
+    <tr>
+      <td><b>@OneToMany</b></td>
+      <td><b>2. Création Agence + Véhicules :</b> Création d'une agence à Sousse avec deux nouveaux véhicules enregistrés et affectés simultanément.</td>
+      <td>
+        <code>ajouterAgenceEtAffecterVehicules(Agence agence)</code>
+      </td>
+      <td>
+        <span class="badge badge-post">POST</span> <code>/agence/ajouter-avec-vehicules</code>
+      </td>
+    </tr>
+    <tr>
+      <td><b>@ManyToMany</b></td>
+      <td><b>3. Affectation & Désaffectation Équipement :</b> Affecter un siège bébé à un véhicule au départ de la location, puis le désaffecter à son retour.</td>
+      <td>
+        <code>affecterEquipement(Long idVehicule, Long idEquipement)</code><br>
+        <code>desaffecterEquipement(Long idVehicule, Long idEquipement)</code>
+      </td>
+      <td>
+        <span class="badge badge-put">PUT</span> <code>/vehicule/affecter-equipement/{idV}/{idE}</code><br>
+        <span class="badge badge-put">PUT</span> <code>/vehicule/desaffecter-equipement/{idV}/{idE}</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- SCENARIO 1 -->
+<h2>2. Scénario 1 : Association @ManyToOne (Mutation d'un Employé)</h2>
+<div class="scenario-card">
+  <b>Énoncé :</b> Deux agences (Tunis et Sfax) ainsi qu'un employé existent déjà dans la base de données. L'employé est actuellement affecté à l'agence de Sfax et le service RH souhaite le muter vers celle de Tunis. La mutation nécessite de désaffecter l'employé de son agence actuelle, puis de l'affecter à la nouvelle agence.
+</div>
+
+<h3>2.1. Code Source de la Couche Service</h3>
+<p><strong>Interface IEmployeService :</strong></p>
+<div class="code-box">Employe desaffecterEmploye(Long idEmploye);
+Employe affecterEmploye(Long idEmploye, Long idAgence);</div>
+
+<p><strong>Implémentation dans IEmployeServiceImp :</strong></p>
+<div class="code-box">@Override
+public Employe desaffecterEmploye(Long idEmploye) {
+    Employe employe = employeRepository.findById(idEmploye).orElse(null);
+    if (employe != null) {
+        employe.setAgence(null);
+        return employeRepository.save(employe);
+    }
+    return null;
+}
+
+@Override
+public Employe affecterEmploye(Long idEmploye, Long idAgence) {
+    Employe employe = employeRepository.findById(idEmploye).orElse(null);
+    Agence agence = agenceRepository.findById(idAgence).orElse(null);
+    if (employe != null && agence != null) {
+        employe.setAgence(agence);
+        return employeRepository.save(employe);
+    }
+    return null;
+}</div>
+
+<h3>2.2. Contrôleur REST (EmployeController)</h3>
+<div class="code-box">@PutMapping({"/desaffecter/{idEmploye}", "/desaffecterEmploye/{idEmploye}"})
+public Employe desaffecterEmploye(@PathVariable Long idEmploye) {
+    return employeService.desaffecterEmploye(idEmploye);
+}
+
+@PutMapping({"/affecter/{idEmploye}/{idAgence}", "/affecterEmploye/{idEmploye}/{idAgence}"})
+public Employe affecterEmploye(@PathVariable Long idEmploye, @PathVariable Long idAgence) {
+    return employeService.affecterEmploye(idEmploye, idAgence);
+}</div>
+
+<h3>2.3. Résultats d'Exécution & Tests Postman</h3>
+<p><strong>Étape 1 : Désaffectation de Sfax (idEmploye = 4) :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">PUT http://localhost:8083/employe/desaffecter/4 &bull; Status: 200 OK</div>
+  <div class="postman-body">
+    <div class="json-snippet">{
+  "idEmploye": 4,
+  "nom": "Mansour",
+  "prenom": "Ali",
+  "role": "CHEF_AGENCE",
+  "agence": null
+}</div>
+  </div>
+</div>
+
+<p><strong>Étape 2 : Mutation & Affectation à Tunis (idAgence = 1) :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">PUT http://localhost:8083/employe/affecter/4/1 &bull; Status: 200 OK</div>
+  <div class="postman-body">
+    <div class="json-snippet">{
+  "idEmploye": 4,
+  "nom": "Mansour",
+  "prenom": "Ali",
+  "role": "CHEF_AGENCE",
+  "agence": {
+    "idAgence": 1,
+    "nom": "AutoLoc Tunis Centre",
+    "ville": "Tunis",
+    "adresse": "Avenue Habib Bourguiba, Tunis",
+    "telephone": "+216 71 123 456"
+  }
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman du Scénario 1 ]</div>
+
+<div class="page-break"></div>
+
+<!-- SCENARIO 2 -->
+<h2>3. Scénario 2 : Association @OneToMany (Ajout d'une Agence avec Véhicules)</h2>
+<div class="scenario-card">
+  <b>Énoncé :</b> Le service de gestion souhaite créer une nouvelle agence à Sousse et y ajouter deux nouveaux véhicules. L'agence ainsi que les deux véhicules doivent être enregistrés dans la base de données, puis chaque véhicule doit être affecté à cette agence.<br>
+  <code>public Agence ajouterAgenceEtAffecterVehicules(Agence agence)</code>
+</div>
+
+<h3>3.1. Code Source de la Couche Service</h3>
+<p><strong>Implémentation dans IAgenceServiceImp :</strong></p>
+<div class="code-box">@Override
+@Transactional
+public Agence ajouterAgenceEtAffecterVehicules(Agence agence) {
+    List&lt;Vehicule&gt; vehicules = agence.getVehicules();
+    // 1. Enregistrement de la nouvelle agence
+    Agence savedAgence = agenceRepository.save(agence);
+
+    // 2. Enregistrement et affectation de chaque véhicule
+    if (vehicules != null && !vehicules.isEmpty()) {
+        for (Vehicule vehicule : vehicules) {
+            vehicule.setAgence(savedAgence);
+            vehiculeRepository.save(vehicule);
+        }
+        savedAgence.setVehicules(vehicules);
+    }
+    return savedAgence;
+}</div>
+
+<h3>3.2. Contrôleur REST (AgenceController)</h3>
+<div class="code-box">@PostMapping({"/ajouter-avec-vehicules", "/ajouterAgenceEtAffecterVehicules"})
+public Agence ajouterAgenceEtAffecterVehicules(@RequestBody Agence agence) {
+    return agenceService.ajouterAgenceEtAffecterVehicules(agence);
+}</div>
+
+<h3>3.3. Résultats d'Exécution & Tests Postman</h3>
+<div class="postman-box">
+  <div class="postman-header">POST http://localhost:8083/agence/ajouter-avec-vehicules &bull; Status: 200 OK</div>
+  <div class="postman-body">
+    <p><b>Request Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "nom": "AutoLoc Sousse Port",
+  "ville": "Sousse",
+  "adresse": "Port El Kantaoui Zone Touristique",
+  "telephone": "+216 73 555 666",
+  "vehicules": [
+    {
+      "immatriculation": "260-TN-1122",
+      "marque": "Peugeot",
+      "modele": "208",
+      "categorie": "CITADINE",
+      "tarifJournalier": 90.00,
+      "statut": "DISPONIBLE"
+    },
+    {
+      "immatriculation": "261-TN-3344",
+      "marque": "Nissan",
+      "modele": "Qashqai",
+      "categorie": "SUV",
+      "tarifJournalier": 200.00,
+      "statut": "DISPONIBLE"
+    }
+  ]
+}</div>
+    <p><b>Response Body (JSON) :</b></p>
+    <div class="json-snippet">{
+  "idAgence": 6,
+  "nom": "AutoLoc Sousse Port",
+  "ville": "Sousse",
+  "adresse": "Port El Kantaoui Zone Touristique",
+  "telephone": "+216 73 555 666"
+}</div>
+    <p><b>Vérification en Base de Données (MySQL) :</b></p>
+    <div class="json-snippet">SELECT id_vehicule, immatriculation, marque, modele, id_agence FROM vehicule WHERE id_agence = 6;
++-------------+-----------------+---------+---------+-----------+
+| id_vehicule | immatriculation | marque  | modele  | id_agence |
++-------------+-----------------+---------+---------+-----------+
+|           5 | 260-TN-1122     | Peugeot | 208     |         6 |
+|           6 | 261-TN-3344     | Nissan  | Qashqai |         6 |
++-------------+-----------------+---------+---------+-----------+</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman du Scénario 2 ]</div>
+
+<div class="page-break"></div>
+
+<!-- SCENARIO 3 -->
+<h2>4. Scénario 3 : Association @ManyToMany (Affectation / Désaffectation Équipement)</h2>
+<div class="scenario-card">
+  <b>Énoncé :</b> Un véhicule et un équipement (siège bébé) existent déjà dans la base de données. Un client souhaite louer ce véhicule avec cet équipement. L'agent affecte le siège bébé au véhicule au départ, puis le désaffecte à son retour.<br>
+  <code>public Vehicule affecterEquipement(Long idVehicule, Long idEquipement)</code><br>
+  <code>public Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement)</code>
+</div>
+
+<h3>4.1. Code Source de la Couche Service</h3>
+<p><strong>Implémentation dans IVehiculeServiceImp :</strong></p>
+<div class="code-box">@Override
+@Transactional
+public Vehicule affecterEquipement(Long idVehicule, Long idEquipement) {
+    Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElse(null);
+    Equipement equipement = equipementRepository.findById(idEquipement).orElse(null);
+
+    if (vehicule != null && equipement != null) {
+        if (vehicule.getEquipements() == null) {
+            vehicule.setEquipements(new ArrayList&lt;&gt;());
+        }
+        boolean exists = vehicule.getEquipements().stream()
+                .anyMatch(e -&gt; e.getIdEquipement().equals(idEquipement));
+        if (!exists) {
+            vehicule.getEquipements().add(equipement);
+        }
+        return vehiculeRepository.save(vehicule);
+    }
+    return null;
+}
+
+@Override
+@Transactional
+public Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement) {
+    Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElse(null);
+    Equipement equipement = equipementRepository.findById(idEquipement).orElse(null);
+
+    if (vehicule != null && equipement != null) {
+        if (vehicule.getEquipements() != null) {
+            vehicule.getEquipements().removeIf(e -&gt; e.getIdEquipement().equals(idEquipement));
+        }
+        return vehiculeRepository.save(vehicule);
+    }
+    return null;
+}</div>
+
+<h3>4.2. Contrôleur REST (VehiculeController)</h3>
+<div class="code-box">@PutMapping({"/affecter-equipement/{idVehicule}/{idEquipement}", "/affecterEquipement/{idVehicule}/{idEquipement}"})
+public Vehicule affecterEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement) {
+    return vehiculeService.affecterEquipement(idVehicule, idEquipement);
+}
+
+@PutMapping({"/desaffecter-equipement/{idVehicule}/{idEquipement}", "/desaffecterEquipement/{idVehicule}/{idEquipement}"})
+public Vehicule desaffecterEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement) {
+    return vehiculeService.desaffecterEquipement(idVehicule, idEquipement);
+}</div>
+
+<h3>4.3. Résultats d'Exécution & Tests Postman</h3>
+<p><strong>1. Affectation du Siège Bébé (idEquipement = 3) au Véhicule (idVehicule = 1) au départ :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">PUT http://localhost:8083/vehicule/affecter-equipement/1/3 &bull; Status: 200 OK</div>
+  <div class="postman-body">
+    <div class="json-snippet">{
+  "idVehicule": 1,
+  "marque": "Renault",
+  "modele": "Clio 5",
+  "equipements": [
+    { "idEquipement": 2, "libelle": "Climatisation automatique" },
+    { "idEquipement": 1, "libelle": "GPS Navigation HD" },
+    { "idEquipement": 3, "libelle": "Siège Bébé Isofix" }
+  ]
+}</div>
+  </div>
+</div>
+
+<p><strong>2. Désaffectation du Siège Bébé (idEquipement = 3) au retour du client :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">PUT http://localhost:8083/vehicule/desaffecter-equipement/1/3 &bull; Status: 200 OK</div>
+  <div class="postman-body">
+    <div class="json-snippet">{
+  "idVehicule": 1,
+  "marque": "Renault",
+  "modele": "Clio 5",
+  "equipements": [
+    { "idEquipement": 2, "libelle": "Climatisation automatique" },
+    { "idEquipement": 1, "libelle": "GPS Navigation HD" }
+  ]
+}</div>
+  </div>
+</div>
+<div class="screenshot-placeholder">[ Insérer la capture d'écran Postman du Scénario 3 ]</div>
+
+<div class="page-break"></div>
+
+<!-- CONCLUSION -->
+<h2>5. Dépôt & Informations de Rendu Blackboard</h2>
+<ul>
+  <li><strong>Dépôt GitHub du Projet :</strong> <a href="https://github.com/salim-hechmi/AutoLoc">https://github.com/salim-hechmi/AutoLoc</a></li>
+  <li><strong>Tests Unitaires Automatisés :</strong>
+    <ul>
+      <li><code>EmployeServiceMutationTest.java</code> (Scénario 1 validé)</li>
+      <li><code>AgenceServiceVehiculesTest.java</code> (Scénario 2 validé)</li>
+      <li><code>VehiculeServiceEquipementTest.java</code> (Scénario 3 validé)</li>
+    </ul>
+  </li>
+  <li><strong>Collection Postman :</strong> <code>AutoLoc_Postman_Collection.json</code> (dossiers Agence, Employe, Vehicule mis à jour avec les requêtes de tests des 3 scénarios).</li>
+</ul>
+
+</body>
+</html>
