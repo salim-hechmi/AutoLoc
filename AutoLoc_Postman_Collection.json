@@ -341,6 +341,30 @@
               "path": ["employe", "delete", "4"]
             }
           }
+        },
+        {
+          "name": "PUT - Desaffecter un employe de son agence",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employe/desaffecter/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["employe", "desaffecter", "1"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Affecter un employe a une agence (Mutation)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employe/affecter/1/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["employe", "affecter", "1", "2"]
+            }
+          }
         }
       ]
     },

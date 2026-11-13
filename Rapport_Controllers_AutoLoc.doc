@@ -217,6 +217,8 @@
 
     <tr><td><b>Employé</b></td><td><span class="badge badge-get">GET</span></td><td><code>/employe</code> / <code>/employe/getById/{id}</code></td><td>Consulter tous les employés / par ID</td></tr>
     <tr><td><b>Employé</b></td><td><span class="badge badge-post">POST</span> <span class="badge badge-put">PUT</span></td><td><code>/employe</code></td><td>Ajouter un employé / Mettre à jour</td></tr>
+    <tr><td><b>Employé</b></td><td><span class="badge badge-put">PUT</span></td><td><code>/employe/desaffecter/{id}</code></td><td>Désaffecter un employé de son agence</td></tr>
+    <tr><td><b>Employé</b></td><td><span class="badge badge-put">PUT</span></td><td><code>/employe/affecter/{idEmp}/{idAg}</code></td><td>Affecter/Muter un employé vers une agence</td></tr>
     <tr><td><b>Employé</b></td><td><span class="badge badge-delete">DELETE</span></td><td><code>/employe/delete/{id}</code></td><td>Supprimer un employé par ID</td></tr>
 
     <tr><td><b>Équipement</b></td><td><span class="badge badge-get">GET</span></td><td><code>/equipement</code> / <code>/equipement/getById/{id}</code></td><td>Consulter tous les équipements / par ID</td></tr>
@@ -506,7 +508,55 @@ public class EmployeController {
     public void supprimerEmploye(@PathVariable Long idEmploye) {
         employeService.supprimerEmploye(idEmploye);
     }
+
+    @PutMapping({"/desaffecter/{idEmploye}", "/desaffecterEmploye/{idEmploye}"})
+    public Employe desaffecterEmploye(@PathVariable Long idEmploye) {
+        return employeService.desaffecterEmploye(idEmploye);
+    }
+
+    @PutMapping({"/affecter/{idEmploye}/{idAgence}", "/affecterEmploye/{idEmploye}/{idAgence}"})
+    public Employe affecterEmploye(@PathVariable Long idEmploye, @PathVariable Long idAgence) {
+        return employeService.affecterEmploye(idEmploye, idAgence);
+    }
 }</div>
+
+<p><strong>Scénario Spécifique @ManyToOne : Mutation d'un employé (Sfax &rarr; Tunis) :</strong></p>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>PUT http://localhost:8083/employe/desaffecter/1</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Désaffectation</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Résultat (agence = null) :</b></p>
+    <div class="json-snippet">{
+  "idEmploye": 1,
+  "nom": "Trabelsi",
+  "prenom": "Karim",
+  "role": "CHEF_AGENCE",
+  "agence": null
+}</div>
+  </div>
+</div>
+<div class="postman-box">
+  <div class="postman-header">
+    <span>PUT http://localhost:8083/employe/affecter/1/2</span>
+    <span style="color: #4ADE80;">Status: 200 OK &bull; Nouvelle Affectation</span>
+  </div>
+  <div class="postman-body">
+    <p><b>Résultat (affecté à la nouvelle agence de Tunis) :</b></p>
+    <div class="json-snippet">{
+  "idEmploye": 1,
+  "nom": "Trabelsi",
+  "prenom": "Karim",
+  "role": "CHEF_AGENCE",
+  "agence": {
+    "idAgence": 2,
+    "nom": "AutoLoc Tunis",
+    "ville": "Tunis"
+  }
+}</div>
+  </div>
+</div>
 
 <p><strong>Résultats des Tests CRUD avec Postman :</strong></p>
 <div class="postman-box">
